@@ -1,8 +1,11 @@
 `Lab3_dimensiontables` follows the instructions for exercise 1.
+
 `Lab3_insertdata` follows the instructions for exercise 2.
+
 `Lab3_dimensional_report` follows the instructions for exercise 3. 
 
-The resulting dimensional report is the following: 
+
+The resulting dimensional report is the following (sorted by last name): 
 
 |last_name   |total_quantity|total_unit_price|
 |------------|--------------|----------------|
