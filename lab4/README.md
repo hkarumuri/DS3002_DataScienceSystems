@@ -1,14 +1,14 @@
-In order to run:
+In order to run, replace header with API key and run
 
 
 ```
-python3 stock.py <comma separated list of stock symbols with no spaces>
+python3 stock2.py <comma separated list of stock symbols with no spaces>
 ```
 
 For example, 
 
 ```
-python3 stock.py aapl,tsla,orcl,vgt,xy
+python3 stock2.py aapl,tsla,orcl,vgt,xy
 ```
 #Lab 4 -- Using APIs
 
