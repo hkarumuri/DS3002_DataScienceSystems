@@ -7,7 +7,7 @@ For the project, I need to:
     * For this project, I used the D&D Api to obtain the data set. This code is modified from Keefe's implementation of pulling the data
 
 
-- [ ] Convert the general format and data structure of the data source from JSON to CSV, from CSV to JSON, from JSON into a SQL database table, etc. There must be the option to convert any source to any target. So, if CSV is an input, I want the user to choose an output EXTRA – Use and API (like twitter) to pull information realtime.
+- [x] Convert the general format and data structure of the data source from JSON to CSV, from CSV to JSON, from JSON into a SQL database table, etc. There must be the option to convert any source to any target. So, if CSV is an input, I want the user to choose an output EXTRA – Use and API (like twitter) to pull information realtime.
     * This code will pull the data directly from the API, and convert to the filetype requested by the user, depending on how the command is run. For more informataion, run `python3 etl.py -h`
 
 
@@ -20,7 +20,7 @@ For the project, I need to:
     * This is tied to the 2nd requirement
     - [X] CSV
     - [X] JSON
-    - [ ] SQL DB (issues with data type of information. Might need to do somem cleanup or establish a schema)
+    - [ ] SQL DB (issues with data type of information. Need to convert lists/objects in data frame into strings to work around error)
 
 
 - [x] Generate a brief summary of the data file ingestion including Number of records and Number of columns 

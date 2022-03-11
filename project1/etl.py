@@ -52,5 +52,5 @@ elif args.filetype == "sql_db":
         con = sqlite3.connect(args.db_name)
 
 
-    spell_df.to_sql(args.filepath, con)
+    spell_df.to_sql(args.filepath, con, if_exists="append")
     print("sql exported")
