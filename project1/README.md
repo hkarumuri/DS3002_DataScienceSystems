@@ -25,8 +25,13 @@ For the project, I need to:
 - [x] Generate a brief summary of the data file ingestion including Number of records and Number of columns 
     * Simple print statement is made. As of current build, output should be `There are 319 records and 21 columns`
 
+- [ ] Error handling
+    * Some of it is done with the Arg Parse to help make sure enough information is there. Need to do one more pass to fill in any gaps i'm not seeing now.
+
 ## Other features that would be cool
+
     - [ ] I want to provide an easy way to add custom spells, as well as spells from other source books still need to think on how this feature would work. This is beyond the scope of the project though.
+
     - [ ] Querying spells so that information could be obtained and turned into an easy cheat sheet would be super nice. 
 
 
