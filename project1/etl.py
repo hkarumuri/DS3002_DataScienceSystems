@@ -1,23 +1,25 @@
 import csv
 import requests
 import pandas as pd
+import pathlib
+import argparse
+import sqlite3
+import os
+
+
+parser = argparse.ArgumentParser(description='Run ETL pipeline')
+parser.add_argument('filepath', help = "This should be the desired filename if CSV/JSON or table name if SQL DB")
+parser.add_argument('filetype', help = "Choose export method",choices=["json", "csv", "sql_db"])
+parser.add_argument('--db_name',default="proj1.db", help = "Choose Database to connect to. If database name is not in current file, then new db will be created. Defaults to proj1.db")
+args = parser.parse_args()
 
 url = 'https://www.dnd5eapi.co/api/spells'
 
 spell_list = requests.request("GET", url).json()
 
-#print(spell_list)
 
-#Attempt at obtaining detailed spell information using Apply
-#def spell_lookup(url_index):
-#    base_url = 'https://www.dnd5eapi.co'
-#    #return base_url + url_index
-#    return requests.get(base_url + url_index).json
-
-#print(df["url"].apply(spell_lookup))
-# Holder for spell details
-
-# pulling data using 
+# This section borrowed and modified from Keefe
+ 
 spell_details = []
 # For each spell in the list,
 for spell in spell_list["results"]:
@@ -31,22 +33,24 @@ spell_df = pd.DataFrame(spell_details)
 data_info = spell_df.shape
 print(f"There are {data_info[0]} records and {data_info[1]} columns\n")
 
+#adding a column
 print("Adding Source Column\n")
 spell_df["source"] = "SRD"
 
 # Ask user export method
-
-options = set(['csv', 'json', 'sql'])
-method = ""
-
-while method not in options:
-    method = input("How would you like to export? \n Options: \n\t * csv\n\t * json\n\t * sql\n\n")
-    if(method not in options):
-        print("Cannot export to that. please try a different option")
-
-if method == "csv":
+if args.filetype == "csv":
+    spell_df.to_csv(args.filepath)
     print("CSV exported")
-elif method == "json":
+elif args.filetype == "json":
+    spell_df.to_json(args.filepath)
     print("json exported")
-elif method == "sql":
+elif args.filetype == "sql_db":
+    print(args.db_name)
+    if not os.path.exists(args.db_name):
+        con = sqlite3.connect(args.db_name)
+    else:
+        con = sqlite3.connect(args.db_name)
+
+
+    spell_df.to_sql(args.filepath, con)
     print("sql exported")
