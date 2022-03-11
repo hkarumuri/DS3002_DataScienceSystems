@@ -13,19 +13,21 @@ For the project, I need to:
 
 - [x] Modify the number of columns from the source to the destination, reducing or adding columns. 
     * Added a column to indicate the source of the information for the API is from the SRD Ruleset (https://dnd.wizards.com/articles/features/systems-reference-document-srd). This is a useful column to have in the event a user may want to combine this information with spells from other sources (Player's Handbook, Tasha's Cauldron of Everything, Homebrew content, etc.)
-    - [ ] I want to provide an easy way to add custom spells, still need to think on how this feature would world. This is beyond the scope of the project though.
 
 
-- [ ] The converted (new) file should be written to disk (local file) or written to a SQL database. 
+- [X] The converted (new) file should be written to disk (local file) or written to a SQL database. 
     * This is tied to the 2nd requirement
     - [X] CSV
     - [X] JSON
-    - [ ] SQL DB (issues with data type of information. Need to convert lists/objects in data frame into strings to work around error)
+    - [X] SQL DB (currently converting all objects into strings, which is probably not the best way to approach this, but it works!)
 
 
 - [x] Generate a brief summary of the data file ingestion including Number of records and Number of columns 
     * Simple print statement is made. As of current build, output should be `There are 319 records and 21 columns`
 
+## Other features that would be cool
+    - [ ] I want to provide an easy way to add custom spells, as well as spells from other source books still need to think on how this feature would work. This is beyond the scope of the project though.
+    - [ ] Querying spells so that information could be obtained and turned into an easy cheat sheet would be super nice. 
 
 
 

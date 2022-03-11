@@ -45,7 +45,12 @@ elif args.filetype == "json":
     spell_df.to_json(args.filepath)
     print("json exported")
 elif args.filetype == "sql_db":
-    print(args.db_name)
+
+    # convert objects to strings in data frame
+    obj_cols = spell_df.select_dtypes(object).columns
+    test = spell_df[obj_cols].astype("string")
+    spell_df[obj_cols] = spell_df[obj_cols].astype("string")
+    
     if not os.path.exists(args.db_name):
         con = sqlite3.connect(args.db_name)
     else:
@@ -54,3 +59,4 @@ elif args.filetype == "sql_db":
 
     spell_df.to_sql(args.filepath, con, if_exists="append")
     print("sql exported")
+
