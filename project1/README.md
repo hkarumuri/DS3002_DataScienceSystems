@@ -15,11 +15,11 @@ For the project, I need to:
     * Added a column to indicate the source of the information for the API is from the SRD Ruleset (https://dnd.wizards.com/articles/features/systems-reference-document-srd). This is a useful column to have in the event a user may want to combine this information with spells from other sources (Player's Handbook, Tasha's Cauldron of Everything, Homebrew content, etc.)
 
 
-- [X] The converted (new) file should be written to disk (local file) or written to a SQL database. 
+- [x] The converted (new) file should be written to disk (local file) or written to a SQL database. 
     * This is tied to the 2nd requirement
-    - [X] CSV
-    - [X] JSON
-    - [X] SQL DB (currently converting all objects into strings, which is probably not the best way to approach this, but it works!)
+    - [x] CSV
+    - [x] JSON
+    - [x] SQL DB (currently converting all objects into strings, which is probably not the best way to approach this, but it works!)
 
 
 - [x] Generate a brief summary of the data file ingestion including Number of records and Number of columns 
@@ -30,9 +30,6 @@ For the project, I need to:
 
 ## Other features that would be cool
 
-    - [ ] I want to provide an easy way to add custom spells, as well as spells from other source books still need to think on how this feature would work. This is beyond the scope of the project though.
+- [ ] I want to provide an easy way to add custom spells, as well as spells from other source books still need to think on how this feature would work. This is beyond the scope of the project though.
 
-    - [ ] Querying spells so that information could be obtained and turned into an easy cheat sheet would be super nice. 
-
-
-
+- [ ] Querying spells so that information could be obtained and turned into an easy cheat sheet would be super nice. 
