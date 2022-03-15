@@ -17,6 +17,15 @@ url = 'https://www.dnd5eapi.co/api/spells'
 
 spell_list = requests.request("GET", url).json()
 
+if args.filetype in set(['json', 'csv']):
+    parsed_filepath = args.filepath.split(".")
+    print(parsed_filepath)
+    if args.filetype != parsed_filepath[-1]:
+        print("WARNING: Inputted filetype and and filepath do not match. Using some of these files may not work.")
+else:
+    parsed_filepath = args.db_name.split(".")
+    if "db" != parsed_filepath[-1]:
+         print("WARNING: Inputted filetype and and filepath do not match. Using some of these files may not work.")
 
 # This section borrowed and modified from Keefe
  
@@ -39,24 +48,36 @@ spell_df["source"] = "SRD"
 
 # Ask user export method
 if args.filetype == "csv":
-    spell_df.to_csv(args.filepath)
-    print("CSV exported")
+    try:
+        spell_df.to_csv(args.filepath)
+        print("CSV exported")
+    except(OSError) as e:
+        print("ERROR: ")
+        print(e)
+
 elif args.filetype == "json":
-    spell_df.to_json(args.filepath)
-    print("json exported")
+    try:
+        spell_df.to_json(args.filepath)
+        print("json exported")
+    except(OSError) as e:
+        print("ERROR: ")
+        print(e)   
+
 elif args.filetype == "sql_db":
-
     # convert objects to strings in data frame
-    obj_cols = spell_df.select_dtypes(object).columns
-    test = spell_df[obj_cols].astype("string")
-    spell_df[obj_cols] = spell_df[obj_cols].astype("string")
-    
-    if not os.path.exists(args.db_name):
-        con = sqlite3.connect(args.db_name)
-    else:
-        con = sqlite3.connect(args.db_name)
+    try:
+        obj_cols = spell_df.select_dtypes(object).columns
+        test = spell_df[obj_cols].astype("string")
+        spell_df[obj_cols] = spell_df[obj_cols].astype("string")
+        
+        if not os.path.exists(args.db_name):
+            con = sqlite3.connect(args.db_name)
+        else:
+            con = sqlite3.connect(args.db_name)
+        spell_df.to_sql(args.filepath, con, if_exists="append")
+        print("sql exported")
+    except(OSError) as e:
+        print("ERROR: ")
+        print(e)
 
-
-    spell_df.to_sql(args.filepath, con, if_exists="append")
-    print("sql exported")
 

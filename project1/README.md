@@ -1,6 +1,32 @@
 # Project 1 ETL data processor 
 While looking for D&D related data sources, I stumbled upon Dan Keefe's project analyzing monsters in D&D (https://peritract.github.io/2020/05/14/dungeons-and-data/.) This project used the Dungeons and Dragons API. While his project was about analyzing monsters, I have made my project about the spells available in the game, as managing spell information can be difficult sometimes.
 
+
+## Usage
+
+Running `python3 etl.py -h` will give the following output:
+
+```
+usage: etl.py [-h] [--db_name DB_NAME] filepath {json,csv,sql_db}
+
+Run ETL pipeline
+
+positional arguments:
+  filepath           This should be the desired filename if CSV/JSON or table name if SQL DB
+  {json,csv,sql_db}  Choose export method
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --db_name DB_NAME  Choose Database to connect to. If database name is not in current file, then new db will be created. Defaults to proj1.db
+```
+
+As an example, if you would like to take the spell data and export it as a csv file names `test.csv`, you would run `python3 etl.py test.csv csv`. 
+
+If you wanted to export to a database named `test.db` with a table named `spells`, run `python3 etl.py spells sql_db --db_name test.db`
+
+
+
+## Project Requirements
 For the project, I need to:
 
 - [x] Fetch / download / retrieve a remote data file by URL, or ingest a local file mounted.
@@ -19,16 +45,20 @@ For the project, I need to:
     * This is tied to the 2nd requirement
     - [x] CSV
     - [x] JSON
-    - [x] SQL DB (currently converting all objects into strings, which is probably not the best way to approach this, but it works!)
+    - [x] SQL DB (currently converting all objects into strings)
 
 
 - [x] Generate a brief summary of the data file ingestion including Number of records and Number of columns 
     * Simple print statement is made. As of current build, output should be `There are 319 records and 21 columns`
 
-- [ ] Error handling
-    * Some of it is done with the Arg Parse to help make sure enough information is there. Need to do one more pass to fill in any gaps i'm not seeing now.
+- [x] Error handling
+    * Some of it is done with the Arg Parse to help make sure enough information is there
+    * Try catch added when writing the files -- if the filepath tries to write to a non-existant file, the error is caught.
+    * Provided a warning when the filename doesn't match.
 
 ## Other features that would be cool
+
+- [ ] Fix the wierdness with having an extra flag for the db_name. It's really wierd. I don't know why I did that. 
 
 - [ ] I want to provide an easy way to add custom spells, as well as spells from other source books still need to think on how this feature would work. This is beyond the scope of the project though.
 
